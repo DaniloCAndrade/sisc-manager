@@ -1,0 +1,29 @@
+# Dependências
+node_modules
+npm-debug.log*
+
+# Build anterior
+dist
+build
+
+# Ambiente local
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+
+# Testes
+coverage/
+**/*.test.tsx
+**/*.spec.tsx
+
+# Editor
+.vscode
+.idea
+*.swp
+
+# Docs
+README.md
