@@ -1,0 +1,597 @@
+/* ============================================================
+   license-theme.css
+   Tema escuro do módulo de Licenciamento — CSS puro (sem depender
+   de configuração Tailwind específica), prefixo "lic-" pra não
+   colidir com os tokens "inv-" do Inventário.
+   ============================================================ */
+
+/* Variáveis GLOBAIS (:root), não só dentro de .lic-theme — o Modal do Ant
+   Design renderiza via portal direto no <body>, fora da árvore onde
+   .lic-theme existe. Se essas variáveis só existissem em .lic-theme, todo
+   var(--lic-*) usado dentro do modal ficaria undefined (texto caindo em
+   preto/padrão do navegador, foi exatamente o bug do "ainda escuro"). */
+:root {
+    --lic-bg: #0f1117;
+    --lic-bg-elevated: #171a24;
+    --lic-card: #1a1d29;
+    --lic-card-hover: #20232f;
+    --lic-border: #2a2e3a;
+    --lic-border-hover: #3a3f4f;
+
+    --lic-text-primary: #f1f5f9;
+    --lic-text-secondary: #94a3b8;
+    --lic-text-muted: #64748b;
+
+    --lic-primary: #3b82f6;
+    --lic-primary-soft: rgba(59, 130, 246, 0.15);
+
+    /* Categorias de consumo */
+    --lic-ideal: #22c55e;
+    --lic-ideal-soft: rgba(34, 197, 94, 0.15);
+    --lic-atencao: #eab308;
+    --lic-atencao-soft: rgba(234, 179, 8, 0.15);
+    --lic-critico: #f97316;
+    --lic-critico-soft: rgba(249, 115, 22, 0.15);
+    --lic-excedido: #ef4444;
+    --lic-excedido-soft: rgba(239, 68, 68, 0.15);
+
+    /* Badges de tipo de licenciamento */
+    --lic-dps: #a855f7;
+    --lic-dps-soft: rgba(168, 85, 247, 0.15);
+    --lic-classic: #06b6d4;
+    --lic-classic-soft: rgba(6, 182, 212, 0.15);
+
+    --lic-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.32);
+    --lic-radius: 12px;
+}
+
+.lic-theme {
+    background: var(--lic-bg);
+    color: var(--lic-text-primary);
+    min-height: 100vh;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── Header ── */
+.lic-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.lic-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lic-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--lic-text-primary);
+    margin: 0;
+}
+
+.lic-subtitle {
+    font-size: 13px;
+    color: var(--lic-text-secondary);
+    margin-top: 2px;
+}
+
+.lic-back-btn {
+    background: var(--lic-card) !important;
+    border-color: var(--lic-border) !important;
+    color: var(--lic-text-primary) !important;
+}
+
+.lic-back-btn:hover {
+    border-color: var(--lic-primary) !important;
+    color: var(--lic-primary) !important;
+}
+
+/* ── Cards de categoria (clicáveis, filtro) ── */
+.lic-category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+    .lic-category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.lic-category-card {
+    background: var(--lic-card);
+    border: 1px solid var(--lic-border);
+    border-radius: var(--lic-radius);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.lic-category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lic-shadow-card);
+}
+
+.lic-category-card--active {
+    border-color: var(--lic-cat-color, var(--lic-primary));
+    box-shadow: 0 0 0 1px var(--lic-cat-color, var(--lic-primary));
+}
+
+.lic-category-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--lic-cat-color);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+}
+
+.lic-category-card-count {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--lic-text-primary);
+    line-height: 1;
+}
+
+.lic-category-card-hint {
+    font-size: 12px;
+    color: var(--lic-text-muted);
+    margin-top: 6px;
+}
+
+/* ── Grid de projetos ── */
+.lic-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.lic-project-card {
+    background: var(--lic-card);
+    border: 1px solid var(--lic-border);
+    border-radius: var(--lic-radius);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.lic-project-card:hover {
+    border-color: var(--lic-border-hover);
+    background: var(--lic-card-hover);
+}
+
+.lic-project-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.lic-project-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--lic-text-primary);
+    margin: 0;
+}
+
+.lic-project-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.lic-project-badge--dps {
+    color: var(--lic-dps);
+    background: var(--lic-dps-soft);
+}
+
+.lic-project-badge--classic {
+    color: var(--lic-classic);
+    background: var(--lic-classic-soft);
+}
+
+.lic-project-metric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--lic-text-secondary);
+    margin-bottom: 4px;
+}
+
+.lic-project-metric-value {
+    color: var(--lic-text-primary);
+    font-weight: 600;
+}
+
+.lic-progress-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    margin: 10px 0 6px;
+}
+
+.lic-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--lic-cat-color, var(--lic-primary));
+    transition: width 0.3s ease;
+}
+
+.lic-project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--lic-text-muted);
+    margin-top: 10px;
+}
+
+.lic-warning-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--lic-atencao);
+    background: var(--lic-atencao-soft);
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-top: 8px;
+}
+
+/* ── Estados vazios / loading ── */
+.lic-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--lic-text-muted);
+}
+
+.lic-skeleton-card {
+    background: var(--lic-card) !important;
+    border: 1px solid var(--lic-border) !important;
+    border-radius: var(--lic-radius) !important;
+}
+
+/* ============================================================
+   Modal de detalhe (DPS / Classic)
+   ============================================================ */
+
+/* A máscara escura por trás — garante que existe mesmo se algo no
+   Tailwind resetar o background dela em algum ponto do cascade. */
+.lic-modal-root .ant-modal-mask {
+    background: rgba(0, 0, 0, 0.6) !important;
+    z-index: 1000 !important;
+}
+
+.lic-modal-root .ant-modal-wrap {
+    z-index: 1001 !important;
+}
+
+/* Fundo do próprio card do modal — seletor reforçado (classe + tag)
+   pra vencer qualquer regra do Tailwind com a mesma especificidade que
+   tenha carregado depois deste arquivo no bundle final. */
+.lic-modal-root.ant-modal,
+.lic-modal-root .ant-modal-content {
+    background-color: var(--lic-bg-elevated) !important;
+}
+
+.lic-modal-root .ant-modal-content {
+    border-radius: var(--lic-radius) !important;
+    padding: 0 !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+.lic-modal-root .ant-modal-header {
+    background-color: var(--lic-bg-elevated) !important;
+    border-bottom: 1px solid var(--lic-border) !important;
+    padding: 18px 24px !important;
+    margin-bottom: 0 !important;
+}
+
+.lic-modal-root .ant-modal-body {
+    background-color: var(--lic-bg-elevated) !important;
+    padding: 20px 24px 24px !important;
+    color: var(--lic-text-primary);
+}
+
+.lic-modal-root .ant-modal-close {
+    color: var(--lic-text-secondary) !important;
+}
+
+.lic-modal-root .ant-modal-close:hover {
+    color: var(--lic-text-primary) !important;
+}
+
+.lic-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--lic-text-primary);
+}
+
+.lic-modal-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--lic-text-secondary);
+    margin: 18px 0 10px;
+}
+
+.lic-modal-loading {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.lic-modal-empty-text {
+    color: var(--lic-text-muted);
+    font-size: 13px;
+    text-align: center;
+    padding: 24px 0;
+}
+
+.lic-modal-period-info {
+    font-size: 12px;
+    color: var(--lic-text-secondary);
+    margin-bottom: 14px;
+}
+
+/* ── Cards de métrica dentro do modal (Valores / Projeção) ── */
+.lic-metric-card-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.lic-metric-card {
+    background: var(--lic-card);
+    border: 1px solid var(--lic-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.lic-metric-card--ideal {
+    border-color: var(--lic-ideal);
+    background: var(--lic-ideal-soft);
+}
+
+.lic-metric-card--info {
+    border-color: var(--lic-primary);
+    background: var(--lic-primary-soft);
+}
+
+.lic-metric-card--warn {
+    border-color: var(--lic-atencao);
+    background: var(--lic-atencao-soft);
+}
+
+.lic-metric-card--danger {
+    border-color: var(--lic-excedido);
+    background: var(--lic-excedido-soft);
+}
+
+.lic-metric-card-label {
+    font-size: 11px;
+    color: var(--lic-text-secondary);
+    margin-bottom: 4px;
+}
+
+.lic-metric-card-value {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--lic-text-primary);
+}
+
+/* ── Período de projeção (botões) ── */
+.lic-period-btns {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.lic-period-btn {
+    background: var(--lic-card);
+    border: 1px solid var(--lic-border);
+    color: var(--lic-text-secondary);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.lic-period-btn:hover {
+    border-color: var(--lic-primary);
+    color: var(--lic-text-primary);
+}
+
+.lic-period-btn--active {
+    background: var(--lic-primary-soft);
+    border-color: var(--lic-primary);
+    color: var(--lic-primary);
+}
+
+/* ── Tabela diária (aba Valores) ── */
+.lic-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--lic-border);
+    border-radius: 10px;
+}
+
+.lic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.lic-table th,
+.lic-table td {
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--lic-border);
+}
+
+.lic-table th:first-child,
+.lic-table td:first-child {
+    text-align: left;
+}
+
+.lic-table thead th {
+    color: var(--lic-text-secondary);
+    font-weight: 600;
+    background: var(--lic-card);
+}
+
+.lic-table tbody td {
+    color: var(--lic-text-primary);
+}
+
+.lic-table-sticky-col {
+    position: sticky;
+    left: 0;
+    background: var(--lic-bg-elevated);
+    z-index: 1;
+}
+
+.lic-table-total-row td {
+    font-weight: 700;
+    color: var(--lic-primary) !important;
+    background: var(--lic-primary-soft);
+}
+
+.lic-table-total-cell {
+    font-weight: 700;
+    color: var(--lic-primary) !important;
+}
+
+/* ── Detalhe Classic (sem tabela, só as 4 métricas) ── */
+.lic-classic-metric-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lic-classic-metric-row {
+    background: var(--lic-card);
+    border: 1px solid var(--lic-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.lic-classic-metric-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.lic-classic-metric-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--lic-text-primary);
+}
+
+.lic-classic-metric-value {
+    font-size: 13px;
+    color: var(--lic-text-secondary);
+}
+
+/* ── Tabs (Ant Design) no tema escuro ── */
+.lic-tabs .ant-tabs-tab {
+    color: var(--lic-text-secondary) !important;
+}
+
+.lic-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--lic-primary) !important;
+}
+
+.lic-tabs .ant-tabs-ink-bar {
+    background: var(--lic-primary) !important;
+}
+
+.lic-tabs .ant-tabs-nav::before {
+    border-bottom: 1px solid var(--lic-border) !important;
+}
+
+/* ============================================================
+   Status de contrato (ícone verde/amarelo/vermelho)
+   ============================================================ */
+
+.lic-category-card {
+    position: relative;
+}
+
+.lic-category-card-icons {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    gap: 6px;
+    font-size: 15px;
+}
+
+.lic-date-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--lic-border);
+    color: var(--lic-text-secondary);
+}
+
+.lic-date-chip-days {
+    color: var(--lic-text-muted);
+    font-weight: 500;
+}
+
+.lic-date-chip--novo {
+    border-color: var(--lic-ideal);
+    color: var(--lic-ideal);
+}
+
+.lic-date-chip--atencao {
+    border-color: var(--lic-atencao);
+    color: var(--lic-atencao);
+}
+
+.lic-date-chip--expirado {
+    border-color: var(--lic-excedido);
+    background: var(--lic-excedido-soft);
+    color: var(--lic-excedido);
+}
+
+/* ── Bolinha de categoria (substitui a barra pro Classic) ── */
+.lic-category-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 2px;
+    cursor: help;
+    vertical-align: middle;
+}

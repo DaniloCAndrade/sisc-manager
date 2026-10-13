@@ -1,0 +1,338 @@
+/* ===== TEMA 3: CARD COM FAIXA DESTAQUE (REFINADO) ===== */
+
+/* Paleta de cores do layout – se quiser adaptar pra empresa, mexe aqui */
+:root {
+  --ts-bg-top: #e5e7eb;
+  --ts-bg-mid: #f9fafb;
+  --ts-bg-bottom: #f3f4f6;
+
+  --ts-card-bg: #ffffff;
+  --ts-card-border: #e5e7eb;
+  --ts-card-shadow: rgba(15, 23, 42, 0.22);
+
+  --ts-accent-1: #3b82f6;
+  --ts-accent-2: #06b6d4;
+  --ts-accent-3: #22c55e;
+
+  --ts-text-main: #111827;
+  --ts-text-soft: #6b7280;
+  --ts-text-muted: #9ca3af;
+
+  --ts-logo-bg-start: #eff6ff;
+  --ts-logo-bg-end: #e0f2fe;
+  --ts-logo-border: #bfdbfe;
+}
+
+/* Wrapper geral da página */
+.tenant-selection-wrapper {
+  min-height: 100vh;
+  padding: 32px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    var(--ts-bg-top) 0,
+    var(--ts-bg-mid) 45%,
+    var(--ts-bg-bottom) 100%
+  );
+}
+
+/* Card principal */
+.tenant-selection-card {
+  width: 100%;
+  max-width: 1080px;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 48px var(--ts-card-shadow);
+  border: 1px solid var(--ts-card-border);
+  background: var(--ts-card-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faixa colorida no topo do card */
+.tenant-selection-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--ts-accent-1),
+    var(--ts-accent-2),
+    var(--ts-accent-3)
+  );
+}
+
+/* Padding interno do card */
+.tenant-selection-card .ant-card-body {
+  padding: 24px 24px 20px;
+}
+
+/* Header */
+.tenant-selection-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.tenant-selection-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Logo mantida na mesma posição */
+.tenant-selection-logo-box {
+  width: 140px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    var(--ts-logo-bg-start),
+    var(--ts-logo-bg-end)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--ts-logo-border);
+}
+
+.tenant-selection-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tenant-selection-logo-text {
+  font-weight: 700 !important;
+  font-size: 18px;
+  color: #0f172a;
+  letter-spacing: 1px;
+}
+
+.tenant-selection-title {
+  margin: 0 !important;
+  color: var(--ts-text-main) !important;
+}
+
+.tenant-selection-subtitle {
+  margin: 4px 0 0 !important;
+  font-size: 13px;
+  color: var(--ts-text-soft) !important;
+}
+
+.tenant-selection-header-right {
+  text-align: right;
+}
+
+.tenant-selection-powered {
+  font-size: 12px;
+  color: var(--ts-text-soft);
+}
+
+.tenant-selection-powered span {
+  font-weight: 600;
+  color: var(--ts-text-main);
+}
+
+.tenant-selection-badge {
+  font-size: 11px;
+  color: var(--ts-text-muted);
+}
+
+/* Divider */
+.tenant-selection-divider {
+  margin: 8px 0 20px 0 !important;
+}
+
+/* Seções / labels */
+.tenant-selection-section {
+  margin-bottom: 24px;
+}
+
+.tenant-selection-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--ts-text-main);
+}
+
+.tenant-selection-helper {
+  margin-top: 4px !important;
+  font-size: 12px !important;
+  color: var(--ts-text-soft) !important;
+}
+
+/* Avisos / erros */
+.tenant-selection-warning {
+  font-size: 13px !important;
+}
+
+.tenant-selection-error {
+  margin-bottom: 16px !important;
+}
+
+/* Frontends */
+.tenant-selection-fronts {
+  transition: opacity 0.2s ease;
+  padding-left: 150px;
+}
+
+.tenant-selection-fronts--disabled {
+  opacity: 0.45;
+}
+
+.tenant-selection-loading {
+  padding: 8px 0;
+}
+
+.tenant-selection-fronts-scroll {
+  max-height: 180px;
+  overflow: auto;
+  padding-right: 4px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  background-color: #f9fafb;
+}
+
+.tenant-selection-front-item {
+  margin-bottom: 4px;
+}
+
+/* Filtros */
+.tenant-selection-filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.tenant-selection-filters-title {
+  margin: 0 !important;
+  color: var(--ts-text-main) !important;
+}
+
+.tenant-selection-filters-badge {
+  font-size: 12px;
+  color: var(--ts-text-soft);
+}
+
+.tenant-selection-filters-subtitle {
+  margin-bottom: 16px !important;
+}
+
+/* Footer */
+.tenant-selection-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Botão com leve destaque */
+.tenant-selection-card .ant-btn-primary {
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+}
+
+/* Pequenos hovers e focus pra UX mais viva */
+.tenant-selection-card .ant-input:hover,
+.tenant-selection-card .ant-select-selector:hover,
+.tenant-selection-card .ant-picker:hover {
+  border-color: var(--ts-accent-1) !important;
+}
+
+.tenant-selection-card .ant-input:focus,
+.tenant-selection-card .ant-input-focused,
+.tenant-selection-card .ant-select-focused .ant-select-selector,
+.tenant-selection-card .ant-picker-focused {
+  border-color: var(--ts-accent-1) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .tenant-selection-wrapper {
+    padding: 16px;
+  }
+
+  .tenant-selection-card .ant-card-body {
+    padding: 16px;
+  }
+
+  .tenant-selection-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tenant-selection-header-right {
+    text-align: left;
+  }
+
+  .tenant-selection-footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .tenant-selection-logo-box {
+    width: 120px;
+  }
+}
+
+/* Atalhos de período */
+.tenant-selection-quickranges {
+  margin-bottom: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--ts-text-soft);
+}
+
+.ts-quick-label {
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+.tenant-selection-quickranges .ant-btn {
+  padding: 0 6px;
+  font-size: 11px;
+}
+
+/* Resumo no rodapé */
+.tenant-selection-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tenant-selection-summary-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ts-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: #eff6ff;
+  color: #1f2937;
+  border: 1px solid #dbeafe;
+}
+
+/* Ajuste responsivo pra não quebrar tudo no mobile */
+@media (max-width: 768px) {
+  .tenant-selection-summary {
+    margin-bottom: 8px;
+  }
+}
+

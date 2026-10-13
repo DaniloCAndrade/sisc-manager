@@ -1,0 +1,135 @@
+/* ===========================
+   HEADER / BRAND
+=========================== */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d70233, #f77f44);
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 900;
+  background: linear-gradient(90deg, #0a1838, #055078);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .app-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero {
+  margin-bottom: 64px;
+}
+
+.hero h2 {
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  color: #0a1838;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #6b7280;
+  max-width: 720px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero h2 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+}
+
+/* ===========================
+   BOTÃO PRINCIPAL (ANTD-LIKE)
+=========================== */
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+}
+
+/* ===========================
+   GRID DE SERVIÇOS
+=========================== */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* ===========================
+   CARD (reforça ANTD)
+=========================== */
+
+.service-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #0a1838;
+}
+
+.service-card p {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}

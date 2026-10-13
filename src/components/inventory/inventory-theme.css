@@ -1,0 +1,144 @@
+/* src/components/inventory/inventory-theme.css
+ *
+ * Tema visual do módulo de Inventário Dynatrace.
+ *
+ * ⚠️ DESCOBERTA IMPORTANTE: o projeto já tem UMA instância global do
+ * Tailwind v4 (via @tailwindcss/vite no vite.config.ts), compartilhada por
+ * TODAS as páginas do app. Não é possível ter uma segunda instância com
+ * prefixo próprio (`prefix(tw)`) coexistindo — o Tailwind v4 processa o
+ * projeto inteiro como uma única compilação. Por isso este arquivo NÃO
+ * reimporta "tailwindcss" (isso já acontece uma vez, na entrada raiz do
+ * app) — só registra tokens de tema NOVOS via @theme, com nomes únicos
+ * (prefixo "inv" no PRÓPRIO NOME do token, não via prefix() do Tailwind)
+ * para não colidir com --card/--border/--primary/--muted que outras
+ * páginas do app já usam para outras cores.
+ *
+ * Classes utilitárias genéricas (flex, grid, p-5, rounded-xl...) são usadas
+ * SEM prefixo nos componentes — são padrão do Tailwind, sem risco de colisão.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Garante que o Tailwind escaneia os arquivos deste módulo mesmo que a
+   detecção automática não pegue a estrutura de pastas sozinha. */
+@source "../../pages/private/Dynatrace/Inventory/**/*.{ts,tsx}";
+@source "./**/*.{ts,tsx}";
+@source "../../lib/inventoryPresentation.ts";
+
+/* ── Tokens de tema com nome único (gera bg-invcard, text-invprimary etc) ── */
+@theme {
+    --color-invborder: hsl(var(--inv-border));
+    --color-invborder-strong: hsl(var(--inv-border-strong));
+    --color-invbackground: hsl(var(--inv-background));
+    --color-invforeground: hsl(var(--inv-foreground));
+
+    --color-invprimary: hsl(var(--inv-primary));
+    --color-invprimary-foreground: hsl(var(--inv-primary-foreground));
+    --color-invprimary-glow: hsl(var(--inv-primary-glow));
+
+    --color-invmuted: hsl(var(--inv-muted));
+    --color-invmuted-foreground: hsl(var(--inv-muted-foreground));
+
+    --color-invcard: hsl(var(--inv-card));
+    --color-invcard-foreground: hsl(var(--inv-card-foreground));
+    --color-invcard-elevated: hsl(var(--inv-card-elevated));
+
+    --color-invsuccess: hsl(var(--inv-success));
+    --color-invwarning: hsl(var(--inv-warning));
+    --color-invdestructive: hsl(var(--inv-destructive));
+
+    --color-invdomain-infra: hsl(var(--inv-domain-infra));
+    --color-invdomain-workload: hsl(var(--inv-domain-workload));
+    --color-invdomain-observe: hsl(var(--inv-domain-observe));
+    --color-invdomain-govern: hsl(var(--inv-domain-govern));
+
+    --animate-fade-in-up: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.85);
+    }
+}
+
+/* ── Variáveis "cruas" (H S% L%), usadas nos estilos inline dos
+   componentes — ex: hsl(var(--inv-domain-infra) / 0.12) ────────────── */
+.inv-theme {
+    --inv-background: 220 30% 98%;
+    --inv-foreground: 220 25% 12%;
+
+    --inv-card: 0 0% 100%;
+    --inv-card-foreground: 220 25% 12%;
+    --inv-card-elevated: 220 20% 97%;
+
+    --inv-primary: 178 85% 38%;
+    --inv-primary-foreground: 0 0% 100%;
+    --inv-primary-glow: 178 90% 45%;
+
+    --inv-muted: 220 15% 95%;
+    --inv-muted-foreground: 215 14% 42%;
+
+    --inv-destructive: 0 72% 48%;
+    --inv-success: 152 65% 36%;
+    --inv-warning: 38 90% 45%;
+
+    --inv-border: 220 15% 90%;
+    --inv-border-strong: 220 15% 80%;
+
+    --inv-radius: 0.75rem;
+
+    --inv-domain-infra: 205 80% 45%;
+    --inv-domain-workload: 152 65% 36%;
+    --inv-domain-observe: 270 70% 55%;
+    --inv-domain-govern: 38 90% 45%;
+
+    --inv-gradient-primary: linear-gradient(135deg, hsl(178 85% 38%) 0%, hsl(190 85% 45%) 100%);
+    --inv-gradient-glow: radial-gradient(60% 80% at 50% 0%, hsl(178 85% 45% / 0.10) 0%, transparent 70%);
+
+    --inv-shadow-card: 0 1px 2px 0 hsl(220 20% 10% / 0.04), 0 8px 24px -12px hsl(220 30% 20% / 0.10);
+    --inv-shadow-glow: 0 0 0 1px hsl(178 85% 38% / 0.20), 0 8px 24px -8px hsl(178 85% 38% / 0.20);
+
+    font-feature-settings: "ss01", "cv11";
+    background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, hsl(178 85% 45% / 0.05), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 0%, hsl(270 70% 55% / 0.04), transparent 60%);
+    background-attachment: fixed;
+}
+
+.inv-font-display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.inv-font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-feature-settings: "tnum", "zero";
+}
+
+.inv-grid-bg {
+    background-image:
+        linear-gradient(hsl(var(--inv-border) / 0.6) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(var(--inv-border) / 0.6) 1px, transparent 1px);
+    background-size: 32px 32px;
+}

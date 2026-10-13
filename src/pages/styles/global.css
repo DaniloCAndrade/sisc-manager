@@ -1,0 +1,150 @@
+:root {
+  --bg-main: #f5f7fa;
+  --bg-card: #ffffff;
+
+  --text-primary: #0a1838;
+  --text-secondary: #4a5568;
+
+  --gradient-logo: linear-gradient(90deg, #D70233, #F77F44);
+  --gradient-name: linear-gradient(90deg, #0A1838, #055078);
+
+  --border-radius: 16px;
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ================================
+   HEADER / TOPO
+================================ */
+.header {
+  padding: 1.5rem 1rem;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--gradient-logo);
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: var(--gradient-name);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main {
+  padding: 1.5rem 1rem 3rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+/* ================================
+   CARDS (MÓDULOS)
+================================ */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card + .card {
+  margin-top: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ================================
+   BOTÕES
+================================ */
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  background: var(--gradient-name);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* ================================
+   GRID PARA DESKTOP
+================================ */
+@media (min-width: 768px) {
+  .main {
+    padding: 3rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card + .card {
+    margin-top: 0;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,148 @@
+/* ===== CREATE TENANT MODAL ===== */
+
+/* ── Estrutura ── */
+.ctm-modal .ant-modal-content {
+  border-radius: 16px !important;
+  overflow: hidden;
+  padding: 0 !important;
+  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.18) !important;
+  position: relative;
+}
+
+/* Faixa gradiente no topo */
+.ctm-modal .ant-modal-content::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4, #22c55e);
+  z-index: 1;
+}
+
+/* ── Header ── */
+.ctm-modal .ant-modal-header {
+  padding: 20px 24px 14px !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  margin-bottom: 0 !important;
+  background: #fff !important;
+}
+
+.ctm-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.ctm-title-icon {
+  color: #3b82f6;
+  font-size: 16px;
+}
+
+/* ── Body ── */
+.ctm-body {
+  padding: 20px 24px;
+  background: #f9fafb;
+}
+
+.ctm-modal .ant-modal-body {
+  padding: 0 !important;
+}
+
+/* ── Section labels ── */
+.ctm-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ctm-section-label--mt {
+  margin-top: 20px;
+}
+
+/* ── Erro ── */
+.ctm-error {
+  margin-bottom: 16px !important;
+  border-radius: 8px !important;
+}
+
+/* ── Form ── */
+.ctm-body .ant-form-item {
+  margin-bottom: 14px;
+}
+
+.ctm-body .ant-form-item-label > label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.ctm-body .ant-input,
+.ctm-body .ant-input-affix-wrapper {
+  border-radius: 8px !important;
+  border-color: #d1d5db;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ctm-body .ant-input:hover,
+.ctm-body .ant-input-affix-wrapper:hover {
+  border-color: #3b82f6 !important;
+}
+
+.ctm-body .ant-input:focus,
+.ctm-body .ant-input-focused,
+.ctm-body .ant-input-affix-wrapper-focused {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* ── Hint ── */
+.ctm-hint {
+  display: block;
+  font-size: 12px !important;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.ctm-hint code {
+  font-size: 11px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: #374151;
+}
+
+/* ── Footer ── */
+.ctm-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 0 0;
+}
+
+.ctm-modal .ant-modal-footer {
+  padding: 12px 24px 16px !important;
+  border-top: 1px solid #e5e7eb !important;
+  background: #fff;
+}
+
+.ctm-modal .ant-btn-primary {
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Gerador de token ── */
+.ctm-token-generator {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 16px;
+}

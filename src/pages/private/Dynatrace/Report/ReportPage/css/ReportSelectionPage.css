@@ -1,0 +1,526 @@
+/* ===== REPORT SELECTION PAGE ===== */
+
+:root {
+  --rs-bg-top:    #e5e7eb;
+  --rs-bg-mid:    #f9fafb;
+  --rs-bg-bottom: #f3f4f6;
+
+  --rs-card-bg:     #ffffff;
+  --rs-card-border: #e5e7eb;
+  --rs-card-shadow: rgba(15, 23, 42, 0.22);
+
+  --rs-accent-1: #3b82f6;
+  --rs-accent-2: #06b6d4;
+  --rs-accent-3: #22c55e;
+
+  --rs-text-main:  #111827;
+  --rs-text-soft:  #6b7280;
+  --rs-text-muted: #9ca3af;
+
+  --rs-logo-bg-start: #eff6ff;
+  --rs-logo-bg-end:   #e0f2fe;
+  --rs-logo-border:   #bfdbfe;
+}
+
+/* ── Wrapper ── */
+.rs-wrapper {
+  min-height: 100vh;
+  padding: 32px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    var(--rs-bg-top)    0%,
+    var(--rs-bg-mid)   45%,
+    var(--rs-bg-bottom) 100%
+  );
+}
+
+/* ── Card principal ── */
+.rs-card {
+  width: 100%;
+  max-width: 1080px;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 48px var(--rs-card-shadow);
+  border: 1px solid var(--rs-card-border) !important;
+  background: var(--rs-card-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faixa colorida no topo */
+.rs-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--rs-accent-1),
+    var(--rs-accent-2),
+    var(--rs-accent-3)
+  );
+}
+
+.rs-card .ant-card-body {
+  padding: 24px 24px 20px;
+}
+
+/* ── Header ── */
+.rs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.rs-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.rs-logo-box {
+  width: 140px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--rs-logo-bg-start), var(--rs-logo-bg-end));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--rs-logo-border);
+}
+
+.rs-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.rs-logo-text {
+  font-weight: 700 !important;
+  font-size: 18px;
+  color: #0f172a;
+  letter-spacing: 1px;
+}
+
+.rs-title {
+  margin: 0 !important;
+  color: var(--rs-text-main) !important;
+}
+
+.rs-subtitle {
+  margin: 4px 0 0 !important;
+  font-size: 13px;
+  color: var(--rs-text-soft) !important;
+}
+
+.rs-header-right {
+  text-align: right;
+}
+
+.rs-powered {
+  font-size: 12px;
+  color: var(--rs-text-soft);
+}
+
+.rs-powered span {
+  font-weight: 600;
+  color: var(--rs-text-main);
+}
+
+.rs-badge-env {
+  font-size: 11px;
+  color: var(--rs-text-muted);
+}
+
+/* ── Divider ── */
+.rs-divider {
+  margin: 8px 0 20px 0 !important;
+}
+
+/* ── Section labels ── */
+.rs-section-label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--rs-text-main);
+}
+
+/* ── Card padrão (destaque) ── */
+.rs-standard-card {
+  border: 1px solid #dbeafe !important;
+  border-radius: 12px !important;
+  background: #eff6ff !important;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  margin-bottom: 24px;
+}
+
+.rs-standard-card:hover {
+  border-color: var(--rs-accent-1) !important;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+}
+
+.rs-standard-card .ant-card-body {
+  padding: 16px 20px;
+}
+
+.rs-standard-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rs-standard-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.rs-standard-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.rs-standard-name {
+  margin: 0 !important;
+  color: var(--rs-text-main) !important;
+  font-size: 15px !important;
+}
+
+.rs-standard-desc {
+  margin: 2px 0 0 !important;
+  font-size: 12px !important;
+  color: var(--rs-text-soft) !important;
+}
+
+/* ── Grid de tenants ── */
+.rs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+/* ── Tenant card ── */
+.rs-tenant-card {
+  border: 1px solid var(--rs-card-border) !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.rs-tenant-card:hover {
+  border-color: var(--rs-accent-1) !important;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.12);
+  transform: translateY(-2px);
+}
+
+.rs-tenant-card .ant-card-body {
+  padding: 16px;
+}
+
+.rs-tenant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.rs-tenant-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #f0f9ff;
+  border: 1px solid #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.rs-tenant-name {
+  margin: 0 0 4px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--rs-text-main) !important;
+  line-height: 1.3 !important;
+}
+
+.rs-tenant-id {
+  font-size: 11px;
+  color: var(--rs-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.rs-tenant-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
+  margin-top: 10px;
+}
+
+.rs-tenant-action {
+  font-size: 11px;
+  color: var(--rs-text-soft);
+}
+
+/* ── Estados ── */
+.rs-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.rs-error {
+  margin-bottom: 16px !important;
+}
+
+.rs-empty {
+  padding: 24px 0;
+  text-align: center;
+  color: var(--rs-text-muted);
+  font-size: 13px;
+}
+
+/* ── Footer ── */
+.rs-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--rs-card-border);
+  margin-top: 8px;
+}
+
+/* ── Botão primário ── */
+.rs-card .ant-btn-primary {
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+}
+
+/* ── Hover/focus inputs (consistência com FormReportPage) ── */
+.rs-card .ant-input:hover,
+.rs-card .ant-select-selector:hover {
+  border-color: var(--rs-accent-1) !important;
+}
+
+.rs-card .ant-input:focus,
+.rs-card .ant-select-focused .ant-select-selector {
+  border-color: var(--rs-accent-1) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  .rs-wrapper { padding: 16px; }
+
+  .rs-card .ant-card-body { padding: 16px; }
+
+  .rs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .rs-header-right { text-align: left; }
+
+  .rs-grid,
+  .rs-skeleton-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .rs-grid,
+  .rs-skeleton-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Modal de listagem de tenants
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Conteúdo e faixa de topo ── */
+.rs-list-modal .ant-modal-content {
+  border-radius: 16px !important;
+  overflow: hidden;
+  padding: 0 !important;
+  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.18) !important;
+  position: relative;
+}
+
+.rs-list-modal .ant-modal-content::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--rs-accent-1),
+    var(--rs-accent-2),
+    var(--rs-accent-3)
+  );
+  z-index: 1;
+}
+
+/* ── Header ── */
+.rs-list-modal .ant-modal-header {
+  padding: 20px 24px 14px !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  margin-bottom: 0 !important;
+  background: #fff !important;
+}
+
+.rs-list-modal .ant-modal-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--rs-text-main) !important;
+}
+
+/* ── Body ── */
+.rs-list-modal .ant-modal-body {
+  padding: 20px 24px !important;
+  background: #f9fafb;
+}
+
+/* ── Footer ── */
+.rs-list-modal .ant-modal-footer {
+  padding: 12px 24px 16px !important;
+  border-top: 1px solid #e5e7eb !important;
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ── Tabela ── */
+.rs-list-modal .ant-table-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+.rs-list-modal .ant-table {
+  font-size: 13px;
+  background: #fff;
+}
+
+.rs-list-modal .ant-table-thead > tr > th {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 10px 14px !important;
+  white-space: nowrap;
+}
+
+.rs-list-modal .ant-table-thead > tr > th::before {
+  display: none !important; /* remove separadores padrão do Ant */
+}
+
+.rs-list-modal .ant-table-tbody > tr > td {
+  padding: 12px 14px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  vertical-align: middle;
+  transition: background 0.15s;
+}
+
+.rs-list-modal .ant-table-tbody > tr:last-child > td {
+  border-bottom: none !important;
+}
+
+.rs-list-modal .ant-table-tbody > tr:hover > td {
+  background: #eff6ff !important;
+}
+
+/* ── Células específicas ── */
+.rs-tenant-row-nome {
+  font-weight: 600;
+  color: var(--rs-text-main);
+  font-size: 13px;
+}
+
+.rs-tenant-row-label {
+  color: var(--rs-text-soft);
+  font-size: 12px;
+}
+
+.rs-tenant-row-id .ant-tag {
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.rs-tenant-row-url a {
+  font-size: 12px;
+  color: var(--rs-accent-1);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.rs-tenant-row-url a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* ── Token cell ── */
+.rs-token-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rs-token-value {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--rs-text-soft);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 3px 8px;
+  letter-spacing: 0.03em;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 160px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.rs-token-value.rs-token-visible {
+  color: #1e40af;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.rs-token-toggle.ant-btn {
+  padding: 0 4px !important;
+  height: 24px !important;
+  width: 24px !important;
+  color: var(--rs-text-muted) !important;
+  flex-shrink: 0;
+  border-radius: 6px !important;
+  transition: color 0.15s, background 0.15s !important;
+}
+
+.rs-token-toggle.ant-btn:hover {
+  color: var(--rs-accent-1) !important;
+  background: #eff6ff !important;
+}

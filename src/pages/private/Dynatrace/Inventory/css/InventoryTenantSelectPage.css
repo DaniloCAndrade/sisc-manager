@@ -1,0 +1,323 @@
+/* ===== INVENTORY TENANT SELECT PAGE ===== */
+/* Segue o mesmo design system de ReportSelectionPage.css  */
+
+:root {
+  --inv-bg-top:    #e5e7eb;
+  --inv-bg-mid:    #f9fafb;
+  --inv-bg-bottom: #f3f4f6;
+
+  --inv-card-bg:     #ffffff;
+  --inv-card-border: #e5e7eb;
+  --inv-card-shadow: rgba(15, 23, 42, 0.22);
+
+  --inv-accent-1: #3b82f6;
+  --inv-accent-2: #06b6d4;
+  --inv-accent-3: #22c55e;
+
+  --inv-text-main:  #111827;
+  --inv-text-soft:  #6b7280;
+  --inv-text-muted: #9ca3af;
+
+  --inv-logo-bg-start: #eff6ff;
+  --inv-logo-bg-end:   #e0f2fe;
+  --inv-logo-border:   #bfdbfe;
+}
+
+/* ── Wrapper ── */
+.inv-wrapper {
+  min-height: 100vh;
+  padding: 32px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    var(--inv-bg-top)    0%,
+    var(--inv-bg-mid)   45%,
+    var(--inv-bg-bottom) 100%
+  );
+}
+
+/* ── Card principal ── */
+.inv-card {
+  width: 100%;
+  max-width: 1080px;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 48px var(--inv-card-shadow);
+  border: 1px solid var(--inv-card-border) !important;
+  background: var(--inv-card-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faixa gradiente no topo */
+.inv-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--inv-accent-1),
+    var(--inv-accent-2),
+    var(--inv-accent-3)
+  );
+}
+
+.inv-card .ant-card-body {
+  padding: 24px 24px 20px;
+}
+
+/* ── Header ── */
+.inv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.inv-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.inv-logo-box {
+  width: 140px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--inv-logo-bg-start), var(--inv-logo-bg-end));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--inv-logo-border);
+}
+
+.inv-logo-text {
+  font-weight: 700;
+  font-size: 18px;
+  color: #0f172a;
+  letter-spacing: 1px;
+}
+
+.inv-title {
+  margin: 0 !important;
+  color: var(--inv-text-main) !important;
+}
+
+.inv-subtitle {
+  margin: 4px 0 0 !important;
+  font-size: 13px;
+  color: var(--inv-text-soft) !important;
+}
+
+.inv-header-right {
+  text-align: right;
+}
+
+.inv-powered {
+  font-size: 12px;
+  color: var(--inv-text-soft);
+}
+
+.inv-powered span {
+  font-weight: 600;
+  color: var(--inv-text-main);
+}
+
+.inv-badge-env {
+  font-size: 11px;
+  color: var(--inv-text-muted);
+}
+
+/* ── Divider ── */
+.inv-divider {
+  margin: 8px 0 20px 0 !important;
+}
+
+/* ── Search bar ── */
+.inv-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inv-search-bar:focus-within {
+  border-color: var(--inv-accent-1);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.12);
+}
+
+.inv-search-icon {
+  color: var(--inv-text-muted);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.inv-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--inv-text-main);
+}
+
+.inv-search-input::placeholder {
+  color: var(--inv-text-muted);
+}
+
+.inv-reload-btn {
+  color: var(--inv-text-muted) !important;
+  flex-shrink: 0;
+}
+
+.inv-reload-btn:hover {
+  color: var(--inv-accent-1) !important;
+  background: #eff6ff !important;
+}
+
+/* ── Section label ── */
+.inv-section-label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--inv-text-main);
+  font-size: 14px;
+}
+
+/* ── Error ── */
+.inv-error {
+  margin-bottom: 16px !important;
+  border-radius: 8px !important;
+}
+
+/* ── Skeleton grid ── */
+.inv-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+/* ── Empty state ── */
+.inv-empty {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--inv-text-muted);
+  font-size: 13px;
+}
+
+/* ── Grid de tenants ── */
+.inv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+/* ── Tenant card ── */
+.inv-tenant-card {
+  border: 1px solid var(--inv-card-border) !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.inv-tenant-card:hover {
+  border-color: var(--inv-accent-1) !important;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.12);
+  transform: translateY(-2px);
+}
+
+.inv-tenant-card .ant-card-body {
+  padding: 16px;
+}
+
+.inv-tenant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.inv-tenant-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #f0f9ff;
+  border: 1px solid #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.inv-tenant-name {
+  margin: 0 0 4px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--inv-text-main) !important;
+  line-height: 1.3 !important;
+}
+
+.inv-tenant-id {
+  font-size: 11px;
+  color: var(--inv-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.inv-tenant-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
+  margin-top: 10px;
+}
+
+.inv-tenant-action {
+  font-size: 11px;
+  color: var(--inv-text-soft);
+}
+
+/* ── Footer ── */
+.inv-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--inv-card-border);
+  margin-top: 8px;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+  .inv-wrapper { padding: 16px; }
+
+  .inv-card .ant-card-body { padding: 16px; }
+
+  .inv-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .inv-header-right { text-align: left; }
+
+  .inv-grid,
+  .inv-skeleton-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .inv-grid,
+  .inv-skeleton-grid { grid-template-columns: 1fr; }
+}

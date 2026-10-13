@@ -1,0 +1,96 @@
+/* theme.css */
+:root{
+  --blue-dark: #004AAD;
+  --blue: #0062E4;
+  --blue-light: #4396F9;
+  --blue-verylight: #91C3FC;
+  --bg-soft: #F8F9FA;
+  --text-muted: #6b7280;
+}
+
+/* Header branco com sombra leve */
+.site-header {
+  background: #fff;
+  align-items: center;
+}
+
+/* Seções e títulos, mesma hierarquia visual do HTML antigo */
+.section {
+  margin-bottom: 3rem;
+}
+.sectionTitle {
+  text-align: center;
+  font-weight: 800;
+  color: var(--blue-dark);
+  font-size: clamp(1.75rem, 2.5vw, 2rem);
+  margin-bottom: 1.5rem;
+}
+
+/* Container de gráficos (equivalente à .chart-container) */
+.chartContainer {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-inline: auto;
+  height: 300px;
+  max-height: 400px;
+}
+@media (min-width: 768px) {
+  .chartContainer { height: 350px; }
+}
+
+/* “Flow diagram” visual */
+.flowBox {
+  border: 2px solid var(--blue-verylight);
+  background-color: rgb(171, 241, 248);
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-align: center;
+  padding: .75rem 1rem;
+  border-radius: .75rem;
+}
+.flowArrow {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--blue);
+  text-align: center;
+}
+
+/* Título e valor em KPIs (alinhado ao antigo) */
+.kpiTitle {
+  font-size: 1.125rem; /* ~text-lg */
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.kpiValue {
+  font-size: clamp(2rem, 5vw, 2.75rem); /* 4xl~5xl */
+  font-weight: 900;
+  color: var(--blue);
+}
+
+/* Hover nos cards (quando não depender só do module) */
+.kpiHover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+  transition: transform .2s, box-shadow .2s;
+}
+
+/* Grid com “respiro” semelhante */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .kpiGrid { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1.5rem; }
+}
+
+.user-experience-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  #user-experience > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
