@@ -12,6 +12,13 @@
     />
     <title>Relatório Dinâmico - Dynatrace</title>
   </head>
+  <script>
+    const redirect = sessionStorage.getItem('redirect');
+    if (redirect) {
+      sessionStorage.removeItem('redirect');
+      history.replaceState(null, '', redirect);
+    }
+  </script>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

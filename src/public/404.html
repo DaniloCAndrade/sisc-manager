@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    const path = window.location.pathname;
+    const repo = '/front-sisc'; // mesmo valor do base
+    sessionStorage.setItem('redirect', path.replace(repo, '') || '/');
+    window.location.replace(repo + '/');
+  </script>
+</head>
+</html>
